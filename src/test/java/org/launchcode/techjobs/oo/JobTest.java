@@ -42,6 +42,7 @@ public class JobTest {
 
     @Test
     public void testJobsForEquality(){
+        // creating two Job objects that have identical field values EXCEPT for id
         Job job3 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         Job job4 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         assertNotEquals(job3, job4);
@@ -50,19 +51,23 @@ public class JobTest {
     @Test
     public void testToStringStartsAndEndsWithNewLine(){
         Job job5 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        assertEquals('\n', job5.toString().charAt(0));
-        assertEquals('\n', job5.toString().charAt(job5.toString().length()-1));
+        //assertEquals('\n', job5.toString().charAt(0));
+        //assertEquals('\n', job5.toString().charAt(job5.toString().length()-1));
+        String jobStr = job5.toString();
+        assertEquals(System.lineSeparator(), jobStr.substring(0, System.lineSeparator().length()));
+        assertEquals(System.lineSeparator(), jobStr.substring(jobStr.length() - System.lineSeparator().length()));
     }
 
     @Test
     public void testToStringContainsCorrectLabelsAndData(){
         Job job6 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        String result = "\nID: " + job6.getId() +
-                        "\nName: " + job6.getName() +
-                        "\nEmployer: " + job6.getEmployer() +
-                        "\nLocation: " + job6.getLocation() +
-                        "\nPosition Type: "  + job6.getPositionType() +
-                        "\nCore Competency: " + job6.getCoreCompetency() + "\n";
+        String result = System.lineSeparator() +
+                "ID: " + job6.getId() + System.lineSeparator() +
+                        "Name: " + job6.getName() + System.lineSeparator() +
+                        "Employer: " + job6.getEmployer() + System.lineSeparator() +
+                        "Location: " + job6.getLocation() + System.lineSeparator() +
+                        "Position Type: "  + job6.getPositionType() + System.lineSeparator() +
+                        "Core Competency: " + job6.getCoreCompetency() + System.lineSeparator();
 
         assertEquals(result, job6.toString());
     }

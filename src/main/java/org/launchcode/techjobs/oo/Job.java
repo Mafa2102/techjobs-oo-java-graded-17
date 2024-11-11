@@ -24,7 +24,7 @@ public class Job {
     }
 
     public Job( String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
-        this();
+        this(); // calling the first constructor to initialize id
         this.name = name;
         this.employer = employer;
         this.location = location;
@@ -63,14 +63,23 @@ public class Job {
         if(getCoreCompetency().getValue().isEmpty()){
             coreCompetency.setValue(returnNoData);
         }
-        return "\n" +
-                "ID: " + getId() +
-                "\nName: " + getName() +
-                "\nEmployer: " + getEmployer() +
-                "\nLocation: " + getLocation() +
-                "\nPosition Type: " + getPositionType() +
-                "\nCore Competency: " + getCoreCompetency() +
-                "\n";
+//        return "\n" +
+//                "ID: " + getId() +
+//                "\nName: " + getName() +
+//                "\nEmployer: " + getEmployer() +
+//                "\nLocation: " + getLocation() +
+//                "\nPosition Type: " + getPositionType() +
+//                "\nCore Competency: " + getCoreCompetency() +
+//                "\n";
+
+        return System.lineSeparator() +
+                "ID: " + getId() + System.lineSeparator() +
+                "Name: " + getName() + System.lineSeparator() +
+                "Employer: " + getEmployer() + System.lineSeparator() +
+                "Location: " + getLocation() + System.lineSeparator() +
+                "Position Type: " + getPositionType() + System.lineSeparator() +
+                "Core Competency: " + getCoreCompetency() + System.lineSeparator();
+
     }
 
     @Override
